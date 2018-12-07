@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { HeroService } from '../hero.service';
 import { Hero } from '../hero';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
 @Component({
   selector: 'app-hero-detail',
@@ -32,5 +33,10 @@ export class HeroDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    this.heroService.updateHero(this.hero)
+      .subscribe(() => this.goBack());
   }
 }
